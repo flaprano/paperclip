@@ -19,7 +19,8 @@ module Paperclip
       self.original_filename = @target.original_filename if @target.respond_to?(:original_filename)
       self.original_filename ||= "data"
       @tempfile = copy_to_tempfile(@target)
-      @content_type = ContentTypeDetector.new(@tempfile.path).detect
+      puts "self name -> #{self.original_filename}"
+      @content_type = ContentTypeDetector.new(@tempfile.path).detect unless @content_type.present?
       @size = @target.size
     end
 
